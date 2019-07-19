@@ -152,6 +152,7 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
 
         Object dataTransfer[] = new Object[2];
         GetNearbyPlacesData getNearbyPlacesData = new GetNearbyPlacesData();
+        String url = "";
 
         switch(v.getId()){
             case R.id.searchButton:
@@ -181,7 +182,7 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
             case R.id.restaurants_button:
                 mMap.clear();
                 String restaurant = "restaurant";
-                String url = getUrl(latitude, longitute, restaurant);
+                url = getUrl(latitude, longitute, restaurant);
                 dataTransfer[0] = mMap;
                 dataTransfer[1] = url;
 

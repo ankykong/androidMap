@@ -41,12 +41,12 @@ public class GetNearbyPlacesData extends AsyncTask<Object, String, String> {
         showNearbyPlaces(nearbyPlaceList);
     }
 
-    private void showNearbyPlaces(List<HashMap<String, String>> nearbyPlacesList){
+    private void showNearbyPlaces(List<HashMap<String, String>> nearbyPlaceList){
 
-        for(int i = 0; i < nearbyPlacesList.size(); ++i){
+        for(int i = 0; i < nearbyPlaceList.size(); ++i){
 
             MarkerOptions markerOptions = new MarkerOptions();
-            HashMap<String, String> googlePlace = nearbyPlacesList.get(i);
+            HashMap<String, String> googlePlace = nearbyPlaceList.get(i);
 
             String placeName = googlePlace.get("place_name");
             String vicinity = googlePlace.get("vicinity");
