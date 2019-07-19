@@ -1,5 +1,7 @@
 package com.example.currentplacedetailsonmap;
 
+import android.util.Log;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -33,6 +35,8 @@ public class DataParser {
             longitude = googlePlaceJson.getJSONObject("geometry").getJSONObject("location").getString("lng");
 
             reference = googlePlaceJson.getString("reference");
+
+            Log.i("HELP", "placeName = "+placeName+ ", vicinity = "+vicinity+ ", latitude = "+latitude+", longitude = "+longitude+"reference = "+reference);
 
             googlePlacesMap.put("place_name", placeName);
             googlePlacesMap.put("vicinity", vicinity);
@@ -80,6 +84,8 @@ public class DataParser {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
+        Log.i("HELP", jsonData);
 
         return getPlaces(jsonArray);
 

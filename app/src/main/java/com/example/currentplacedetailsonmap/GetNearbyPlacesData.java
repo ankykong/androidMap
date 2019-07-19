@@ -1,6 +1,7 @@
 package com.example.currentplacedetailsonmap;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -22,10 +23,12 @@ public class GetNearbyPlacesData extends AsyncTask<Object, String, String> {
     protected String doInBackground(Object... objects) {
         mMap = (GoogleMap) objects[0];
         url = (String) objects[1];
+        Log.i("HELP", url);
 
         DownloadUrl downloadUrl = new DownloadUrl();
         try {
             googlePlacesData = downloadUrl.readUrl(url);
+            Log.i("HELP", googlePlacesData);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -35,6 +38,7 @@ public class GetNearbyPlacesData extends AsyncTask<Object, String, String> {
 
     @Override
     protected void onPostExecute(String s){
+        Log.i("HELP", s);
         List<HashMap<String, String>> nearbyPlaceList = null;
         DataParser parser = new DataParser();
         nearbyPlaceList = parser.parse(s);

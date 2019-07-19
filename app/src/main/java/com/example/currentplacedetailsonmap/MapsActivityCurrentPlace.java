@@ -172,6 +172,8 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
                     for(int i = 0; i < addressList.size(); ++i){
                         Address myAddress = addressList.get(i);
                         LatLng latlng = new LatLng(myAddress.getLatitude(), myAddress.getLongitude());
+                        latitude = myAddress.getLatitude();
+                        longitute = myAddress.getLongitude();
                         mo.position(latlng);
                         mo.title("Your search result");
                         mMap.addMarker(mo);
@@ -191,7 +193,7 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
                 break;
             case R.id.dept_button:
                 mMap.clear();
-                String department = "department";
+                String department = "department_store";
                 url = getUrl(latitude, longitute, department);
                 dataTransfer[0] = mMap;
                 dataTransfer[1] = url;
@@ -201,7 +203,7 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
                 break;
             case R.id.groceries_button:
                 mMap.clear();
-                String groceries = "grocery";
+                String groceries = "supermarket";
                 url = getUrl(latitude, longitute, groceries);
                 dataTransfer[0] = mMap;
                 dataTransfer[1] = url;
@@ -215,11 +217,12 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
     private String getUrl(double latitude, double longitude, String nearbyPlace){
 
         StringBuilder googlePlaceUrl = new StringBuilder("https://maps.googleapis.com/maps/api/place/nearbysearch/json?");
-        googlePlaceUrl.append("location"+latitude+","+longitude);
+        googlePlaceUrl.append("location="+latitude+","+longitude);
         googlePlaceUrl.append("&radius="+PROXIMITY_RADIUS);
         googlePlaceUrl.append("&type="+nearbyPlace);
         googlePlaceUrl.append("&sensor=true");
-        googlePlaceUrl.append("&key="+API_KEY);
+        /* TODO: Put in your API_KEY HERE */
+        googlePlaceUrl.append("&key="+YOUR_API_KEY);
 
         return googlePlaceUrl.toString();
     }
@@ -288,11 +291,15 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
                             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
                                     new LatLng(mLastKnownLocation.getLatitude(),
                                             mLastKnownLocation.getLongitude()), DEFAULT_ZOOM));
+                            latitude = mLastKnownLocation.getLatitude();
+                            longitute = mLastKnownLocation.getLongitude();
                         } else {
                             Log.d(TAG, "Current location is null. Using defaults.");
                             Log.e(TAG, "Exception: %s", task.getException());
                             mMap.moveCamera(CameraUpdateFactory
                                     .newLatLngZoom(mDefaultLocation, DEFAULT_ZOOM));
+                            latitude = mDefaultLocation.latitude;
+                            longitute = mDefaultLocation.longitude;
                             mMap.getUiSettings().setMyLocationButtonEnabled(false);
                         }
                     }
