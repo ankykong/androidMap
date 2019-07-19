@@ -218,7 +218,7 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
         googlePlaceUrl.append("&radius="+PROXIMITY_RADIUS);
         googlePlaceUrl.append("&type="+nearbyPlace);
         googlePlaceUrl.append("&sensor=true");
-        googlePlaceUrl.append("&key="+"AIzaSyD5Wj0jowFx2veK4OIpteUj4tDbRNvqzsA");
+        googlePlaceUrl.append("&key="+API_KEY);
 
         return googlePlaceUrl.toString();
     }
